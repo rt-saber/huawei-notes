@@ -115,4 +115,4 @@ Once base64 decoded the session identifier is 32 bytes.
 | copyright=2014-2018                          | -        | static                     |
 
 
-The primary session identified is called `szSessionID`. The CSRF protection is called `szChallenge`
+The primary session identifier is called `szSessionID`. The CSRF protection is called `szChallenge`
