@@ -72,6 +72,28 @@ Copies characters from `cookie_ptr + 18` ("SVNWebProxyCookie=") into pucTokenId 
 
 > VRP is Huawei’s network operating system that runs on network devices such as routers and switches.
 
+A lot of functions from vrp are using wrappers around other functions.
+
+`size_t VOS_StrLen(longlong param_1)` -> this is a wrapper around `strlen`. It first checks if `param_1` is null.
+`char * vrp_inet_ntop(short param_1,byte *param_2,char *param_3,ulonglong param_4)` -> this is a wrapper around `inet_ntop`, add some security checks.
+
 ## CLI Console
 
 The `WCLI_*` functions are handling the different features of the CLI Console.
+
+> WCON = Web console user terminal interface
+
+## HTTPd
+
+The `HTTPD_PRS_PackResponseHeader` function reveals many endpoint and logic for the HTTP server.
+The `HTTPD_PRS_ParseRequestHeader` function handles requests.
+
+szPath -> endpoint
+
+#### HTTPD_PRS_ParseRequestHeader
+
+If we send a HTTP request containing the "Token" header it will set `(pstHttpdCtl->stReqHeader).RequestLine.szToken` to it
+
+#### HTTPD_CheckSession
+
+It handles the "SESSIONID" cookie. It copies the base64 decoded SESSIONID cookie to the `szSessionID` buffer.
