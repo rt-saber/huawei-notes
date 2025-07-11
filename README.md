@@ -19,40 +19,39 @@ ELF 64-bit MSB shared object, MIPS, MIPS64 rel2 version 1 (SYSV), dynamically li
 
 #### WPM_HTTP_RetInit
 ```c
-
+INT32 WPM_HTTP_RetInit(void)
 ```
 
 Compiles 7 regex pattern one after the other. If any fails then it returns 1.
    
-REGEX 1: HTTP Request Line
-- Format: "METHOD URI HTTP_VERSION"
-- Example: "GET /default.html HTTP/1.1"
+- REGEX 1: HTTP Request Line
+   - Format: "METHOD URI HTTP_VERSION"
+   - Example: "GET /default.html HTTP/1.1"
 
-REGEX 2: Web Proxy URL Path
-- Format: "/webproxy/NUM/NUM/NUM/PROTO/HOST,PARAMS"
-- Example: "/webproxy/123/456/789/https/example.com,timeout=30"
+- REGEX 2: Web Proxy URL Path
+   - Format: "/webproxy/NUM/NUM/NUM/PROTO/HOST,PARAMS"
+   - Example: "/webproxy/123/456/789/https/example.com,timeout=30"
 
-REGEX 3: Host:Port
-- Format: "HOST:PORT"
-- Example: "example.com:8080"
+- REGEX 3: Host:Port
+   - Format: "HOST:PORT"
+   - Example: "example.com:8080"
 
-REGEX 4: HTTP Header
-- Format: "HEADER: VALUE"
-- Example: "Content-Type: text/html"
+- REGEX 4: HTTP Header
+   - Format: "HEADER: VALUE"
+   - Example: "Content-Type: text/html"
 
-REGEX 5: Cookie (SVNWebProxyCookie)
-- Format: "SVNWebProxyCookie=value"
-- Example: "SVNWebProxyCookie=123"
+- REGEX 5: Cookie (SVNWebProxyCookie)
+   - Format: "SVNWebProxyCookie=value"
+   - Example: "SVNWebProxyCookie=123"
 
-REGEX 6: HTTP Response
-- Format: "HTTP_VERSION CODE MESSAGE"
-- Example: "HTTP/1.1 200 OK"
+- REGEX 6: HTTP Response
+   - Format: "HTTP_VERSION CODE MESSAGE"
+   - Example: "HTTP/1.1 200 OK"
 
-REGEX 7: Key-Value
-- Format: "KEY = VALUE"
-- Example: "timeout=30"
+- REGEX 7: Key-Value
+   - Format: "KEY = VALUE"
+   - Example: "timeout=30"
 
----
 Cookie: no length limit. This cookie is also used by the `WPM_HTTP_GetTokenId` function
 
 #### WPM_HTTP_GetTokenId
@@ -62,6 +61,5 @@ INT32 WPM_HTTP_GetTokenId(UCHAR *pucCookie,UCHAR *pucTokenId)
 
 Check SVNWebProxyCookie cookie.
 Assume something like SVNWebProxyCookie=<token>
-Skip "SVNWebProxyCookie", copy token until delimiter (;, ' ' or '\0')
 
-Copies characters from `cookie_ptr + 18` ("SVNWebProxyCookie=") into pucTokenId until it hits ; or \0 or a space - basically, the token
+Copies characters from `cookie_ptr + 18` ("SVNWebProxyCookie=") into `pucTokenId` until it hits one of the delimiter (';', ' ' or '\0').
