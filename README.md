@@ -1,5 +1,5 @@
 # huawei-notes
-Notes from my reverse engineering of the Huawei USG6000 firewall firmware
+Notes from my reverse engineering of the Huawei USG6000 firewall firmware. This repository was not meant to be public, only reason I haven't switched it to private is because hopefully it can one day help someone else doing reverse engineering on this device firmwares.
 
 ---
 
