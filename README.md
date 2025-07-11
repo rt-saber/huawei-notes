@@ -97,3 +97,22 @@ If we send a HTTP request containing the "Token" header it will set `(pstHttpdCt
 #### HTTPD_CheckSession
 
 It handles the "SESSIONID" cookie. It copies the base64 decoded SESSIONID cookie to the `szSessionID` buffer.
+
+## SESSIONID
+
+This is an example of how SESSIONID looks like: `mQAAALirwetGRZ1HYFFN6RAQyVYc6kWN4WYtiVXW/kQ=&mQAAABMDB881k4kT4KzHQg==&HUAWEI &langfrombrows=en-GB,&copyright=2014-2018`
+Each fields are separated by `&`. The first part is the session identifier. The second part is a CSRF protection. 
+
+Once base64 decoded the session identifier is 32 bytes. 
+
+
+| Value                                        | Size     | Purpose                    |
+|----------------------------------------------|----------|----------------------------|
+| mQAAALirwetGRZ1HYFFN6RAQyVYc6kWN4WYtiVXW/kQ= | 32 bytes | Primary session identifier |
+| mQAAABMDB881k4kT4KzHQg==                     | 16 bytes | CSRF protection            |
+| HUAWEI                                       | -        | static                     |
+| langfrombrows=en-GB                          | -        | client language            |
+| copyright=2014-2018                          | -        | static                     |
+
+
+The primary session identified is called `szSessionID`. The CSRF protection is called `szChallenge`
