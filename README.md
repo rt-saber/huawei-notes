@@ -65,3 +65,13 @@ Assume something like SVNWebProxyCookie=<token>
 Skip "SVNWebProxyCookie", copy token until delimiter (;, ' ' or '\0')
 
 Copies characters from `cookie_ptr + 18` ("SVNWebProxyCookie=") into pucTokenId until it hits ; or \0 or a space - basically, the token
+
+# vrp
+
+`ELF 32-bit MSB shared object, MIPS, N32 MIPS64 rel2 version 1 (SYSV), dynamically linked, interpreter /lib32/ld.so.1, for GNU/Linux 2.6.34, with debug_info, not stripped`
+
+> VRP is Huawei’s network operating system that runs on network devices such as routers and switches.
+
+## CLI Console
+
+The `WCLI_*` functions are handling the different features of the CLI Console.
