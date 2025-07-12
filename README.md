@@ -128,3 +128,52 @@ The first 4 bytes could eventually be determined, but the remaining 28 bytes cou
 The `HTTPD_CheckSession` function is calling `HTTPD_WRAPPER_Hash_FindNode` to verify if the SESSIONID cookie is valid. If it is the `HTTPD_CheckSessionIP()` function is called to verify if the user's IP correspond to the IP saved with the SESSIONID.
 
 Because of this, in theory, even if an attacker steal a SESSIONID cookie, they should not be able to log in.
+
+
+---
+
+## Structs
+
+```c
+struct tagHTTPD_TASK_CTL_STRU {
+    ulong ulTaskid;
+    long lsAcptSocket;
+    ulong ulGlobalId;
+    long lSvrSocket;
+    UCHAR szHdrsRcvBuf[5121];
+    ulong ulHdrsRcvdLen;
+    long lHdrsFlgRcv:16;
+    long lHdrsFlgSnd:16;
+    ulong ulSendBuffLen;
+    ulong ulHasSend;
+    UCHAR *pszRemainDataptr;
+    UCHAR *pszBodyRcvBuf;
+    ulong ulBodyRcvdLen;
+    ulong ulUploadRcvdLen;
+    UCHAR szFileName[161];
+    ulong ulFileEndLen;
+    long lHandle;
+    ulong ulSessionIndex;
+    HTTP_REQUEST stReqHeader;
+    HTTP_RESPONSE stResHeader;
+    UCHAR *pszSendBuff;
+    long lTimeOut;
+    HTTP_IPADDR stUserIP;
+    ulong ulUserPort;
+    ulong ulDestIP;
+    ulong ulDestPort;
+    ulong ulLifeTime;
+    ulong ulStatusCode;
+    ulong *pSSL;
+    ulong ulHandshakeDone;
+    ulong ulHandshakeCnt;
+    long lSendDataHandle;
+    long *SendDatafd;
+    uint ulSendDataFlag;
+    ulong res;
+    ulong ulSendDataRemainLen;
+    HTTPD_SVR_TYPE enumSessType;
+    ulong ulFileDeleteFlag;
+    ulong ulWriteToFlash;
+};
+```
